@@ -35,6 +35,8 @@
             this.btnArray3 = new System.Windows.Forms.Button();
             this.btnArray4 = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.btnArray5 = new System.Windows.Forms.Button();
+            this.listBox3 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btnArray1
@@ -103,11 +105,31 @@
             this.listBox2.Size = new System.Drawing.Size(75, 95);
             this.listBox2.TabIndex = 5;
             // 
+            // btnArray5
+            // 
+            this.btnArray5.Location = new System.Drawing.Point(217, 74);
+            this.btnArray5.Name = "btnArray5";
+            this.btnArray5.Size = new System.Drawing.Size(75, 23);
+            this.btnArray5.TabIndex = 8;
+            this.btnArray5.Text = "Array 5";
+            this.btnArray5.UseVisualStyleBackColor = true;
+            this.btnArray5.Click += new System.EventHandler(this.btnArray5_Click);
+            // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.Location = new System.Drawing.Point(213, 103);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(86, 95);
+            this.listBox3.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(321, 217);
+            this.Controls.Add(this.btnArray5);
+            this.Controls.Add(this.listBox3);
             this.Controls.Add(this.btnArray4);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.btnArray3);
@@ -130,6 +152,8 @@
         private System.Windows.Forms.Button btnArray3;
         private System.Windows.Forms.Button btnArray4;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button btnArray5;
+        private System.Windows.Forms.ListBox listBox3;
     }
 }
 
