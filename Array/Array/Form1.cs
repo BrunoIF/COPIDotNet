@@ -57,5 +57,37 @@ namespace Array
             numeros[4] = 90;
             MessageBox.Show("Número: " + numeros[2]);            
         }
+
+        private void btnArray3_Click(object sender, EventArgs e)
+        {
+            // Preenchendo o Array com o laço for
+            int[] numeros = new int[5];
+            // a estrutura abaixo cria as variáveis que irão preencher 5 "casinhas" do array
+            // i++ equivale a i= i + 1
+            for (int i = 0; i < 5; i++)
+            {
+                numeros[i] = i;
+                // .Add -> Add
+                // .Remove -> Remove
+                // .Clear -> Clear
+                //listBox1.Items.Add(i);
+                listBox1.Items.Add("numeros ["+ i + "] = " + i*10);
+                
+            }            
+
+        }
+
+        private void btnArray4_Click(object sender, EventArgs e)
+        {
+            // Outra forma de iniciar um array
+            // Uso do laço for para exibir o conteúdo do Array
+            // uso do .length
+            int[] pares = new int[] { 2,4,6,8};
+            // Length -> identifica o tamanho total do Array
+            for (int i = 0; i < pares.Length; i++)
+            {                
+                listBox2.Items.Add(pares[i]);
+            }
+        }
     }
 }
