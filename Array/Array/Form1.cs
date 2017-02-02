@@ -40,8 +40,22 @@ namespace Array
             Random numero = new Random();
             string n = naipe[numero.Next(4)];
             string f = faces[numero.Next(12)];
-            
+            // Exibindo a carta            
             MessageBox.Show("Carta Sorteada: " + f + " de " + n);
          }
+
+        private void btnArray2_Click(object sender, EventArgs e)
+        {
+            // Outra forma de declarar e iniciar um Array
+            // neste caso o Array SEMPRE tem um tamanho fixo
+            // "Criando um objeto Array do tipo inteiro do tamanho 5"
+            int[] numeros = new int[5];
+            numeros[0] = 1;
+            numeros[1] = 5;
+            numeros[2] = 18;
+            numeros[3] = 45;
+            numeros[4] = 90;
+            MessageBox.Show("Número: " + numeros[2]);            
+        }
     }
 }
