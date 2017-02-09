@@ -18,7 +18,7 @@ namespace Array
         }
 
         private void btnArray1_Click(object sender, EventArgs e)
-        {
+        {            
             // Criando e iniciando um simples array
             // Neste caso o tamanho do Array pode variar
             string[] times = { "Corinthians", "Palmeiras", "São Paulo", "Santos" };
@@ -106,6 +106,44 @@ namespace Array
             {
                 listBox3.Items.Add(dia);
             }
+        }
+
+        private void btnArray6_Click(object sender, EventArgs e)
+        {
+            // Array multidimensional "MATRIZ"
+            // [,] 2 dimensões [linha, coluna]
+            // [,,] 3 dimensões
+            // [,,,] 4 dimensões
+            // ...
+            // a linha abaixo cria e inicializa os array de 2 dimensões com 2 linhas e 4 colunas [2,4]
+            double[,] notas = new double[2, 4] { { 8,7,9,3}, { 4,5,8,6} };
+            // Exemplo da tabela de notas do aluno
+            MessageBox.Show("Nota: " + notas[0,2]);
+            /*
+             *  sass:
+             *  #id-random
+             *      $variavel : 24
+             *      font-size: 2px
+             *      
+             *  .lista
+             *      .item:last-child
+             *          color: red
+             *  ------------------
+             *  css:
+             *  #id-random{
+             *  font-size: 2px;
+             *  }
+             * 
+             * Ir pra pasta
+             * cmd -> sass style-sass.sass:style-css.css
+             * 
+             * -------------------
+             * <ul class="lista">
+             *  <li class="item"></li>
+             *  <li class="item"></li>
+             *  <li class="item"></li>
+             * </ul>            
+             */
         }
     }
 }
