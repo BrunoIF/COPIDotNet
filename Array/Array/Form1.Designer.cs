@@ -37,6 +37,7 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.btnArray5 = new System.Windows.Forms.Button();
             this.listBox3 = new System.Windows.Forms.ListBox();
+            this.btnArray6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnArray1
@@ -123,11 +124,22 @@
             this.listBox3.Size = new System.Drawing.Size(86, 95);
             this.listBox3.TabIndex = 7;
             // 
+            // btnArray6
+            // 
+            this.btnArray6.Location = new System.Drawing.Point(21, 232);
+            this.btnArray6.Name = "btnArray6";
+            this.btnArray6.Size = new System.Drawing.Size(75, 23);
+            this.btnArray6.TabIndex = 9;
+            this.btnArray6.Text = "Array 6";
+            this.btnArray6.UseVisualStyleBackColor = true;
+            this.btnArray6.Click += new System.EventHandler(this.btnArray6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(321, 217);
+            this.ClientSize = new System.Drawing.Size(321, 299);
+            this.Controls.Add(this.btnArray6);
             this.Controls.Add(this.btnArray5);
             this.Controls.Add(this.listBox3);
             this.Controls.Add(this.btnArray4);
@@ -154,6 +166,7 @@
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Button btnArray5;
         private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.Button btnArray6;
     }
 }
 
