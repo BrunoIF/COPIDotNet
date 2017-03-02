@@ -91,9 +91,11 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.picStatus);
             this.Controls.Add(this.maskedTextBox1);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Validador de CPF";
             this.Activated += new System.EventHandler(this.Form1_Activated);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.picStatus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

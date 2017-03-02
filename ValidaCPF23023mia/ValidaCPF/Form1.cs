@@ -57,5 +57,15 @@ namespace ValidaCPF
                 }
             }
         }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //trocando o <TAB> pelo <ENTER>
+            if ((e.KeyChar.CompareTo((char)Keys.Return))==0)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
     }
 }
