@@ -58,6 +58,7 @@ namespace ValidaCPF
             }
         }
 
+        // Não esquecer de habilitar no form a propriedade Key Preview para true
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             //trocando o <TAB> pelo <ENTER>
