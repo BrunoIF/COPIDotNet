@@ -31,11 +31,28 @@ namespace ImagemPath
             SqlCommand cmd = new SqlCommand(adicionar, conexao);
             try
             {
-
+                // Usando o objeto OpenFileDialog para buscar a imagem que ficará armazenada
+                if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    // Abrir a conexão
+                    conexao.Open();
+                    // Carregar a imagem na picture box
+                    imgImagem.Load(openFileDialog1.FileName);
+                    // Zerar os parâmetros
+                    cmd.Parameters.Clear();
+                    // Usar os parâmetros para vincular os objetos aos campos da tabela
+                    cmd.Parameters.AddWithValue("CODIGO", txtCodigo.Text);
+                    cmd.Parameters.AddWithValue("DESCRICAO", txtDescricao.Text);
+                    // Passando o parâmetro imagem (coração deste projeto) *cadastra apenas o caminho (path)*
+                    cmd.Parameters.AddWithValue("CAMINHO", openFileDialog1.FileName);
+                    // Executando a instrução SQL
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Imagem cadastrada com sucesso.");
+                }
             }
             catch (Exception ex)
             {
-
+                // Exibir o erro
                 MessageBox.Show(ex.Message);
             }
             finally
