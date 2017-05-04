@@ -60,5 +60,46 @@ namespace ImagemPath
                 conexao.Close();
             }
         }
+
+        // Usando um grid para exibir as imagens
+        // IMPORTANTE (técnica para )
+        private void btnListar_Click(object sender, EventArgs e)
+        {
+            // instrução SQL
+            string listar = "select * from tb_imagem_path_02";
+            SqlCommand cmd = new SqlCommand(listar, conexao);
+            try
+            {
+                cmd.Parameters.Clear();
+                conexao.Open();
+                // Uso da classe DataTable para manipulação de tabelas (data grid)
+                // Instanciar o objeto table
+                DataTable table = new DataTable();
+                // Usando a classe SqlDataAdapter para executar a instrução e popular a tabela
+                SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                // Populando a tabela
+                adap.Fill(table);
+                // Estabelecendo a conexão com o banco
+                dataGridView1.DataSource = table;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexao.Close();
+            }
+        }
+        // Evento seleção (linha do data grid)
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            // se existir dados na linha do grid 
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                imgImagem.Load(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
+            }
+        }
     }
 }

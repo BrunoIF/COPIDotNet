@@ -69,12 +69,13 @@
             // 
             // btnListar
             // 
-            this.btnListar.Location = new System.Drawing.Point(523, 77);
+            this.btnListar.Location = new System.Drawing.Point(560, 77);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(97, 23);
             this.btnListar.TabIndex = 3;
             this.btnListar.Text = "Listar Imagens";
             this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
             // 
             // imgImagem
             // 
@@ -92,8 +93,9 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(298, 115);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(322, 298);
+            this.dataGridView1.Size = new System.Drawing.Size(359, 298);
             this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // openFileDialog1
             // 
@@ -119,7 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(645, 432);
+            this.ClientSize = new System.Drawing.Size(679, 432);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView1);
