@@ -16,6 +16,8 @@ namespace prjAgendamento
         static string strCn = "Data Source=sql.fiap.com.br;Initial Catalog=3EMIA;User ID=RM12294;Password=230200";
         SqlConnection conexao = new SqlConnection(strCn);
 
+        SqlDataReader DR;
+
         public Form1()
         {
             InitializeComponent();
@@ -67,6 +69,50 @@ namespace prjAgendamento
             {
                 conexao.Close();
             }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            // não esquecer de usar o DR para recuperar
+            // string de pesquisa
+            string pesquisa = "select * from tb_agendamento_02 where agendamento = @agendamento";
+            SqlCommand cmd = new SqlCommand(pesquisa, conexao);
+            cmd.Parameters.AddWithValue("@agendamento", dateTimePicker1.Text);
+            
+
+            // Atenção! Limpar os campos ates de executar o comando
+            txtH1.Clear();
+            txtH2.Clear();
+            txtH3.Clear();
+            txtH4.Clear();
+            txtH5.Clear();
+
+            try
+            {
+                conexao.Open();
+                // recuperando os valores do banco
+                DR = cmd.ExecuteReader();
+                if (DR.Read())
+                {
+                    // Preencher os campos
+                    txtH1.Text = DR.GetValue(1).ToString();
+                    txtH2.Text = DR.GetValue(2).ToString();
+                    txtH3.Text = DR.GetValue(3).ToString();
+                    txtH4.Text = DR.GetValue(4).ToString();
+                    txtH5.Text = DR.GetValue(5).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexao.Close();
+            }
+            
+
         }
     }
 }
