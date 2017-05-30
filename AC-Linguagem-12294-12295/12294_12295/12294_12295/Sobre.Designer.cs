@@ -1,6 +1,6 @@
-﻿namespace CRUD2
+﻿namespace _12294_12295
 {
-    partial class Form1
+    partial class Sobre
     {
         /// <summary>
         /// Required designer variable.
@@ -28,21 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // Form1
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(36, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(179, 52);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "3EMIA\r\n\r\nBruno Irokawa Fernandes - 12294\r\nNathalia Irokawa Fernandes - 12295";
+            // 
+            // Sobre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(502, 295);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ClientSize = new System.Drawing.Size(249, 108);
+            this.Controls.Add(this.label1);
+            this.Name = "Sobre";
+            this.Text = "Sobre";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label label1;
     }
 }
-
