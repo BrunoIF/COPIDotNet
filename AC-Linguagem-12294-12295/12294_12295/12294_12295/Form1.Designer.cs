@@ -130,6 +130,7 @@
             // txtCEP
             // 
             this.txtCEP.Location = new System.Drawing.Point(76, 172);
+            this.txtCEP.Mask = "00000-000";
             this.txtCEP.Name = "txtCEP";
             this.txtCEP.Size = new System.Drawing.Size(99, 20);
             this.txtCEP.TabIndex = 8;
@@ -137,9 +138,10 @@
             // txtCPF
             // 
             this.txtCPF.Location = new System.Drawing.Point(75, 33);
+            this.txtCPF.Mask = "000,000,000-00";
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.Size = new System.Drawing.Size(100, 20);
-            this.txtCPF.TabIndex = 9;
+            this.txtCPF.TabIndex = 1;
             this.txtCPF.Leave += new System.EventHandler(this.txtCPF_Leave);
             // 
             // btnChecaCEP

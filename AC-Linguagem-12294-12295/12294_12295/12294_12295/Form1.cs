@@ -13,8 +13,7 @@ namespace _12294_12295
 {
     public partial class Form1 : Form
     {
-        static string strCn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\DBAgenda.mdf;Integrated Security=True";
-        //criando um objeto de nome conexao tendo como modelo a classe SqlConnection para conexão ao banco de dados
+        static string strCn = "Data Source=sql.fiap.com.br;Initial Catalog=3EMIA;User ID=RM12294;Password=230200";
         SqlConnection conexao = new SqlConnection(strCn);
         public Form1()
         {
@@ -36,24 +35,77 @@ namespace _12294_12295
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
+            string pesquisa = "select * from tb_AC_cliente_02 where cpf = @CPF";
 
+            
+            SqlCommand cmd = new SqlCommand(pesquisa, conexao);
+            
+            cmd.Parameters.AddWithValue("@CPF", txtCPF.Text.Replace(".", "").Replace("-", "").Trim());
+            
+            SqlDataReader DR;
+            
+            try
+            {
+                
+                conexao.Open();
+                
+                DR = cmd.ExecuteReader();
+                
+                if (DR.Read())
+                {
+                    
+                    txtCPF.Text = DR.GetValue(0).ToString();
+                    txtNome.Text = DR.GetValue(1).ToString();
+                    txtTelefone.Text = DR.GetValue(2).ToString();
+                    txtEmail.Text = DR.GetValue(3).ToString();
+                    txtCEP.Text = DR.GetValue(4).ToString();
+                    txtLogradouro.Text = DR.GetValue(5).ToString();
+                    txtComplemento.Text = DR.GetValue(6).ToString();
+                    txtBairro.Text = DR.GetValue(7).ToString();
+                    txtUF.Text = DR.GetValue(8).ToString();
+                }
+               
+                else
+                {
+                    MessageBox.Show("Cliente não encontrado.");
+                    txtNome.Clear();
+                    txtEmail.Clear();
+                    txtTelefone.Clear();
+                    txtBairro.Clear();
+                    txtCEP.Clear();
+                    txtCPF.Clear();
+                    txtUF.Clear();
+                    txtLogradouro.Clear();
+                    txtComplemento.Clear();
+                } 
+                DR.Close();
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conexao.Close();
+            }
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            string adiciona = "insert into tb_AC_cliente_02 values (@CPF, @Nome, @Telefone, @Email, @CEP, @Logradouro, @Bairro, @Complemento, @UF)";
+            string adiciona = "insert into tb_AC_cliente_02 values (@CPF, @Nome, @Telefone, @Email, @CEP, @Logradouro, @Complemento, @Bairro, @UF)";
             SqlCommand cmd = new SqlCommand(adiciona, conexao);
-            cmd.Parameters.AddWithValue("@CPF", txtCPF.Text);
+            cmd.Parameters.AddWithValue("@CPF", txtCPF.Text.Replace(".", "").Replace("-", "").Trim());
             cmd.Parameters.AddWithValue("@Nome", txtNome.Text);
             cmd.Parameters.AddWithValue("@Telefone", txtTelefone.Text);
             cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-            cmd.Parameters.AddWithValue("@CEP", txtCEP.Text);
+            cmd.Parameters.AddWithValue("@CEP", txtCEP.Text.Replace(".", "").Replace("-", "").Trim());
             cmd.Parameters.AddWithValue("@Logradouro", txtLogradouro.Text);
             cmd.Parameters.AddWithValue("@Bairro", txtBairro.Text);
             cmd.Parameters.AddWithValue("@Complemento", txtComplemento.Text);
             cmd.Parameters.AddWithValue("@UF", txtUF.Text);
 
-            string checarCPF = "select count(*) from tb_AC_cliente_02 where cpf = '" + txtCPF.Text + "'";
+            string checarCPF = "select count(*) from tb_AC_cliente_02 where cpf = '" + txtCPF.Text.Replace(".", "").Replace("-", "").Trim() + "'";
             SqlCommand TotalCPF = new SqlCommand(checarCPF, conexao);
 
             try
@@ -68,33 +120,35 @@ namespace _12294_12295
                 }
                 else
                 {
-
+                    conexao.Open();
+                    int resultado;
+                    resultado = cmd.ExecuteNonQuery();
+                    if (resultado == 1)
+                    {
+                        MessageBox.Show("Cliente cadastrado com sucesso", "Sucesso", MessageBoxButtons.OK);
+                        txtNome.Clear();
+                        txtEmail.Clear();
+                        txtTelefone.Clear();
+                        txtBairro.Clear();
+                        txtCEP.Clear();
+                        txtCPF.Clear();
+                        txtUF.Clear();
+                        txtLogradouro.Clear();
+                        txtComplemento.Clear();
+                    }
+                    cmd.Dispose();
                 }
-                int resultado;
-                resultado = cmd.ExecuteNonQuery();
-                if (resultado == 1)
-                {
-                    MessageBox.Show("Cliente cadastrado com sucesso", "Sucesso", MessageBoxButtons.OK);
-                    txtNome.Clear();
-                    txtEmail.Clear();
-                    txtTelefone.Clear();
-                    txtBairro.Clear();
-                    txtCEP.Clear();
-                    txtCPF.Clear();
-                    txtUF.Clear();
-                    txtLogradouro.Clear();
-                    txtComplemento.Clear();
-                }
-                cmd.Dispose();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Ocorreu um erro durante o processo. Tente novamente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                //MessageBox.Show(ex.Message);
             }
             finally
             {
                 conexao.Close();
             }
+        
         }
 
         private void txtCPF_Leave(object sender, EventArgs e)
@@ -156,18 +210,18 @@ namespace _12294_12295
                 if (final)
                 {
                     picCPFStatus.Image = Properties.Resources.ok;
-                    txtCPF.Focus();
                 }
                 else
                 {
                     picCPFStatus.Image = Properties.Resources.erro;
+                    txtCPF.Focus();
                 }
             }
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            string remove = "delete from tb_AC_cliente_02 where cpf= " + txtCPF.Text;
+            string remove = "delete from tb_AC_cliente_02 where cpf= " + txtCPF.Text.Replace(".", "").Replace("-", "").Trim();
             
             SqlCommand cmd = new SqlCommand(remove, conexao);
             try
@@ -210,14 +264,14 @@ namespace _12294_12295
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            string altera = "update tbcontatos set nome= @Nome, email = @Email, telefone = @Telefone, cep = @CEP, logradouro = @Logradouro, complemento = @Complemento, bairro = @Bairro, uf = @UF where cpf= @CPF";
+            string altera = "update tb_AC_cliente_02 set nome= @Nome, email = @Email, telefone = @Telefone, cep = @CEP, logradouro = @Logradouro, complemento = @Complemento, bairro = @Bairro, uf = @UF where cpf= @CPF";
 
             SqlCommand cmd = new SqlCommand(altera, conexao);
-            cmd.Parameters.AddWithValue("@CPF", txtCPF.Text);
+            cmd.Parameters.AddWithValue("@CPF", txtCPF.Text.Replace(".", "").Replace("-", "").Trim());
             cmd.Parameters.AddWithValue("@Nome", txtNome.Text);
             cmd.Parameters.AddWithValue("@Telefone", txtTelefone.Text);
             cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-            cmd.Parameters.AddWithValue("@CEP", txtCEP.Text);
+            cmd.Parameters.AddWithValue("@CEP", txtCEP.Text.Replace(".", "").Replace("-", "").Trim());
             cmd.Parameters.AddWithValue("@Logradouro", txtLogradouro.Text);
             cmd.Parameters.AddWithValue("@Bairro", txtBairro.Text);
             cmd.Parameters.AddWithValue("@Complemento", txtComplemento.Text);
@@ -242,8 +296,9 @@ namespace _12294_12295
                 }
                 cmd.Dispose();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                //MessageBox.Show(ex.Message);
                 MessageBox.Show("Ocorreu um erro durante o processo. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
             finally
