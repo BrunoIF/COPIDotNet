@@ -32,6 +32,8 @@ namespace _12294_12295
             txtUF.Clear();
             txtLogradouro.Clear();
             txtComplemento.Clear();
+            picCPFStatus.Image = null;
+            pcbUsuario.Image = null;
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
@@ -64,7 +66,15 @@ namespace _12294_12295
                     txtComplemento.Text = DR.GetValue(6).ToString();
                     txtBairro.Text = DR.GetValue(7).ToString();
                     txtUF.Text = DR.GetValue(8).ToString();
-                    pcbUsuario.Load(@"./images_db/" + DR.GetValue(9).ToString());
+                    if (DR.GetValue(9).ToString() == "naotem")
+                    {
+                        pcbUsuario.Image = null;
+                    }
+                    else
+                    {
+                        pcbUsuario.Load(@"./images_db/" + DR.GetValue(9).ToString());
+                    }
+                    
                 }
                
                 else
@@ -75,7 +85,6 @@ namespace _12294_12295
                     txtTelefone.Clear();
                     txtBairro.Clear();
                     txtCEP.Clear();
-                    txtCPF.Clear();
                     txtUF.Clear();
                     txtLogradouro.Clear();
                     txtComplemento.Clear();
@@ -86,7 +95,8 @@ namespace _12294_12295
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
+                MessageBox.Show("Ocorreu um erro durante o processo. Tente novamente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
             finally
             {
@@ -108,18 +118,26 @@ namespace _12294_12295
             cmd.Parameters.AddWithValue("@Complemento", txtComplemento.Text);
             cmd.Parameters.AddWithValue("@UF", txtUF.Text);
 
-            string filename = Path.GetFileNameWithoutExtension(openFileDialog1.FileName) + DateTime.Now.ToString("yyyy-MM-dd_HH_mm_ss") + Path.GetExtension(openFileDialog1.FileName);
-
-            string directory = "Images_db";
-            if (Directory.Exists(directory))
+            if (pcbUsuario.Image != null)
             {
+                
+                string filename = Path.GetFileNameWithoutExtension(openFileDialog1.FileName) + DateTime.Now.ToString("yyyy-MM-dd_HH_mm_ss") + Path.GetExtension(openFileDialog1.FileName);
+
+                string directory = "Images_db";
                 Directory.CreateDirectory(directory);
+                if (Directory.Exists(directory))
+                {
 
-                File.Copy(openFileDialog1.FileName, Path.Combine(directory, filename));
+
+                    File.Copy(openFileDialog1.FileName, Path.Combine(directory, filename));
+                }
+
+                cmd.Parameters.AddWithValue("@Imagem", filename);
             }
-
-            cmd.Parameters.AddWithValue("@Imagem", filename);
-
+            else
+            {
+                cmd.Parameters.AddWithValue("@Imagem", "naotem");
+            }
 
             string checarCPF = "select count(*) from tb_AC_cliente_02 where cpf = '" + txtCPF.Text.Replace(".", "").Replace("-", "").Trim() + "'";
             SqlCommand TotalCPF = new SqlCommand(checarCPF, conexao);
@@ -154,13 +172,13 @@ namespace _12294_12295
                         txtLogradouro.Clear();
                         txtComplemento.Clear();
                         pcbUsuario.Image = null;
+                        picCPFStatus.Image = null;
                     }
                     cmd.Dispose();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //MessageBox.Show(ex.Message);
                 MessageBox.Show("Ocorreu um erro durante o processo. Tente novamente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
             finally
@@ -265,6 +283,7 @@ namespace _12294_12295
                         txtLogradouro.Clear();
                         txtComplemento.Clear();
                         pcbUsuario.Image = null;
+                        picCPFStatus.Image = null;
                         MessageBox.Show("Registro removido com sucesso.");
                     }
 
@@ -297,16 +316,25 @@ namespace _12294_12295
             cmd.Parameters.AddWithValue("@Complemento", txtComplemento.Text);
             cmd.Parameters.AddWithValue("@UF", txtUF.Text);
 
-            string filename = Path.GetFileNameWithoutExtension(openFileDialog1.FileName) + DateTime.Now.ToString("yyyy-MM-dd_HH_mm_ss") + Path.GetExtension(openFileDialog1.FileName);
-
-            string directory = "Images_db";
-            if (Directory.Exists(directory))
+            if (pcbUsuario.Image != null)
             {
-                Directory.CreateDirectory(directory);
 
-                File.Copy(openFileDialog1.FileName, Path.Combine(directory, filename));
+                string filename = Path.GetFileNameWithoutExtension(openFileDialog1.FileName) + DateTime.Now.ToString("yyyy-MM-dd_HH_mm_ss") + Path.GetExtension(openFileDialog1.FileName);
+
+                string directory = "Images_db";
+                if (Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+
+                    File.Copy(openFileDialog1.FileName, Path.Combine(directory, filename));
+                }
+
+                cmd.Parameters.AddWithValue("@Imagem", filename);
             }
-            cmd.Parameters.AddWithValue("@Imagem", filename);
+            else
+            {
+                cmd.Parameters.AddWithValue("@Imagem", "naotem");
+            }
 
             try
             {
@@ -325,6 +353,7 @@ namespace _12294_12295
                     txtLogradouro.Clear();
                     txtComplemento.Clear();
                     pcbUsuario.Image = null;
+                    picCPFStatus.Image = null;
 
                     MessageBox.Show("Registro alterado com sucesso");
                 }
@@ -380,12 +409,13 @@ namespace _12294_12295
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                //var filename = openFileDialog1.FileName;
-                //Bitmap bit = new Bitmap(openFileDialog1.FileName);
-                
                 pcbUsuario.Load(openFileDialog1.FileName);
             }
         }
-        
+
+        private void btnImgLimpar_Click(object sender, EventArgs e)
+        {
+            pcbUsuario.Image = null;
+        }
     }
 }

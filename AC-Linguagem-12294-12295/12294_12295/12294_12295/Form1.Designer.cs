@@ -59,6 +59,7 @@
             this.btnArquivoFoto = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnImgLimpar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picCPFStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbUsuario)).BeginInit();
             this.SuspendLayout();
@@ -66,7 +67,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 94);
+            this.label1.Location = new System.Drawing.Point(41, 111);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 0;
@@ -74,15 +75,15 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(121, 91);
+            this.txtNome.Location = new System.Drawing.Point(121, 108);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(246, 20);
-            this.txtNome.TabIndex = 1;
+            this.txtNome.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 129);
+            this.label2.Location = new System.Drawing.Point(41, 146);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 2;
@@ -91,7 +92,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 162);
+            this.label3.Location = new System.Drawing.Point(41, 179);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 3;
@@ -100,7 +101,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(41, 60);
+            this.label4.Location = new System.Drawing.Point(41, 77);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 4;
@@ -109,7 +110,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(41, 199);
+            this.label5.Location = new System.Drawing.Point(41, 216);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 13);
             this.label5.TabIndex = 5;
@@ -118,7 +119,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(41, 237);
+            this.label6.Location = new System.Drawing.Point(41, 254);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 13);
             this.label6.TabIndex = 6;
@@ -127,7 +128,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(41, 272);
+            this.label7.Location = new System.Drawing.Point(41, 289);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(37, 13);
             this.label7.TabIndex = 7;
@@ -135,15 +136,15 @@
             // 
             // txtCEP
             // 
-            this.txtCEP.Location = new System.Drawing.Point(121, 196);
+            this.txtCEP.Location = new System.Drawing.Point(121, 213);
             this.txtCEP.Mask = "00000-000";
             this.txtCEP.Name = "txtCEP";
             this.txtCEP.Size = new System.Drawing.Size(70, 20);
-            this.txtCEP.TabIndex = 8;
+            this.txtCEP.TabIndex = 5;
             // 
             // txtCPF
             // 
-            this.txtCPF.Location = new System.Drawing.Point(121, 57);
+            this.txtCPF.Location = new System.Drawing.Point(121, 74);
             this.txtCPF.Mask = "000,000,000-00";
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.Size = new System.Drawing.Size(100, 20);
@@ -152,7 +153,7 @@
             // 
             // btnChecaCEP
             // 
-            this.btnChecaCEP.Location = new System.Drawing.Point(197, 194);
+            this.btnChecaCEP.Location = new System.Drawing.Point(197, 211);
             this.btnChecaCEP.Name = "btnChecaCEP";
             this.btnChecaCEP.Size = new System.Drawing.Size(86, 23);
             this.btnChecaCEP.TabIndex = 10;
@@ -162,21 +163,21 @@
             // 
             // txtTelefone
             // 
-            this.txtTelefone.Location = new System.Drawing.Point(121, 126);
+            this.txtTelefone.Location = new System.Drawing.Point(121, 143);
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(246, 20);
-            this.txtTelefone.TabIndex = 11;
+            this.txtTelefone.TabIndex = 3;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(121, 159);
+            this.txtEmail.Location = new System.Drawing.Point(121, 176);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(246, 20);
-            this.txtEmail.TabIndex = 12;
+            this.txtEmail.TabIndex = 4;
             // 
             // picCPFStatus
             // 
-            this.picCPFStatus.Location = new System.Drawing.Point(228, 57);
+            this.picCPFStatus.Location = new System.Drawing.Point(228, 74);
             this.picCPFStatus.Name = "picCPFStatus";
             this.picCPFStatus.Size = new System.Drawing.Size(24, 20);
             this.picCPFStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -186,7 +187,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(273, 308);
+            this.label8.Location = new System.Drawing.Point(273, 325);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(24, 13);
             this.label8.TabIndex = 14;
@@ -194,37 +195,37 @@
             // 
             // txtLogradouro
             // 
-            this.txtLogradouro.Location = new System.Drawing.Point(121, 234);
+            this.txtLogradouro.Location = new System.Drawing.Point(121, 251);
             this.txtLogradouro.Name = "txtLogradouro";
             this.txtLogradouro.Size = new System.Drawing.Size(246, 20);
-            this.txtLogradouro.TabIndex = 15;
+            this.txtLogradouro.TabIndex = 6;
             // 
             // txtBairro
             // 
-            this.txtBairro.Location = new System.Drawing.Point(121, 269);
+            this.txtBairro.Location = new System.Drawing.Point(121, 286);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(246, 20);
-            this.txtBairro.TabIndex = 16;
+            this.txtBairro.TabIndex = 7;
             // 
             // txtUF
             // 
-            this.txtUF.Location = new System.Drawing.Point(306, 305);
+            this.txtUF.Location = new System.Drawing.Point(306, 322);
             this.txtUF.MaxLength = 2;
             this.txtUF.Name = "txtUF";
             this.txtUF.Size = new System.Drawing.Size(61, 20);
-            this.txtUF.TabIndex = 17;
+            this.txtUF.TabIndex = 9;
             // 
             // txtComplemento
             // 
-            this.txtComplemento.Location = new System.Drawing.Point(121, 305);
+            this.txtComplemento.Location = new System.Drawing.Point(121, 322);
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(60, 20);
-            this.txtComplemento.TabIndex = 18;
+            this.txtComplemento.TabIndex = 8;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(41, 308);
+            this.label9.Location = new System.Drawing.Point(41, 325);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(74, 13);
             this.label9.TabIndex = 19;
@@ -232,7 +233,7 @@
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(396, 55);
+            this.btnCadastrar.Location = new System.Drawing.Point(396, 72);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
             this.btnCadastrar.TabIndex = 20;
@@ -242,7 +243,7 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(396, 126);
+            this.btnLimpar.Location = new System.Drawing.Point(396, 143);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 21;
@@ -252,7 +253,7 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(396, 162);
+            this.btnExcluir.Location = new System.Drawing.Point(396, 179);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 22;
@@ -262,7 +263,7 @@
             // 
             // btnPesquisar
             // 
-            this.btnPesquisar.Location = new System.Drawing.Point(258, 55);
+            this.btnPesquisar.Location = new System.Drawing.Point(258, 72);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(75, 23);
             this.btnPesquisar.TabIndex = 23;
@@ -272,7 +273,7 @@
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(396, 89);
+            this.btnAlterar.Location = new System.Drawing.Point(396, 106);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(75, 23);
             this.btnAlterar.TabIndex = 24;
@@ -282,7 +283,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(396, 198);
+            this.button1.Location = new System.Drawing.Point(396, 215);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 25;
@@ -293,7 +294,7 @@
             // pcbUsuario
             // 
             this.pcbUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pcbUsuario.Location = new System.Drawing.Point(496, 91);
+            this.pcbUsuario.Location = new System.Drawing.Point(496, 100);
             this.pcbUsuario.Name = "pcbUsuario";
             this.pcbUsuario.Size = new System.Drawing.Size(237, 209);
             this.pcbUsuario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -303,15 +304,16 @@
             // Foto
             // 
             this.Foto.AutoSize = true;
-            this.Foto.Location = new System.Drawing.Point(493, 60);
+            this.Foto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Foto.Location = new System.Drawing.Point(493, 77);
             this.Foto.Name = "Foto";
-            this.Foto.Size = new System.Drawing.Size(28, 13);
+            this.Foto.Size = new System.Drawing.Size(36, 17);
             this.Foto.TabIndex = 27;
             this.Foto.Text = "Foto";
             // 
             // btnArquivoFoto
             // 
-            this.btnArquivoFoto.Location = new System.Drawing.Point(496, 303);
+            this.btnArquivoFoto.Location = new System.Drawing.Point(496, 320);
             this.btnArquivoFoto.Name = "btnArquivoFoto";
             this.btnArquivoFoto.Size = new System.Drawing.Size(128, 23);
             this.btnArquivoFoto.TabIndex = 28;
@@ -329,15 +331,26 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(40, 20);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(74, 20);
+            this.label10.Size = new System.Drawing.Size(175, 20);
             this.label10.TabIndex = 29;
-            this.label10.Text = "Cadastro";
+            this.label10.Text = "Formulário de Cadastro";
+            // 
+            // btnImgLimpar
+            // 
+            this.btnImgLimpar.Location = new System.Drawing.Point(658, 322);
+            this.btnImgLimpar.Name = "btnImgLimpar";
+            this.btnImgLimpar.Size = new System.Drawing.Size(75, 23);
+            this.btnImgLimpar.TabIndex = 30;
+            this.btnImgLimpar.Text = "Limpar";
+            this.btnImgLimpar.UseVisualStyleBackColor = true;
+            this.btnImgLimpar.Click += new System.EventHandler(this.btnImgLimpar_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(761, 377);
+            this.ClientSize = new System.Drawing.Size(787, 375);
+            this.Controls.Add(this.btnImgLimpar);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnArquivoFoto);
             this.Controls.Add(this.Foto);
@@ -410,6 +423,7 @@
         private System.Windows.Forms.Button btnArquivoFoto;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnImgLimpar;
     }
 }
 
