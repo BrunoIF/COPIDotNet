@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace _12294_12295
 {
@@ -63,6 +64,7 @@ namespace _12294_12295
                     txtComplemento.Text = DR.GetValue(6).ToString();
                     txtBairro.Text = DR.GetValue(7).ToString();
                     txtUF.Text = DR.GetValue(8).ToString();
+                    pcbUsuario.Load(@"./images_db/" + DR.GetValue(9).ToString());
                 }
                
                 else
@@ -77,6 +79,7 @@ namespace _12294_12295
                     txtUF.Clear();
                     txtLogradouro.Clear();
                     txtComplemento.Clear();
+                    pcbUsuario.Image = null;
                 } 
                 DR.Close();
                 cmd.Dispose();
@@ -93,7 +96,7 @@ namespace _12294_12295
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            string adiciona = "insert into tb_AC_cliente_02 values (@CPF, @Nome, @Telefone, @Email, @CEP, @Logradouro, @Complemento, @Bairro, @UF)";
+            string adiciona = "insert into tb_AC_cliente_02 values (@CPF, @Nome, @Telefone, @Email, @CEP, @Logradouro, @Complemento, @Bairro, @UF, @Imagem)";
             SqlCommand cmd = new SqlCommand(adiciona, conexao);
             cmd.Parameters.AddWithValue("@CPF", txtCPF.Text.Replace(".", "").Replace("-", "").Trim());
             cmd.Parameters.AddWithValue("@Nome", txtNome.Text);
@@ -105,6 +108,19 @@ namespace _12294_12295
             cmd.Parameters.AddWithValue("@Complemento", txtComplemento.Text);
             cmd.Parameters.AddWithValue("@UF", txtUF.Text);
 
+            string filename = Path.GetFileNameWithoutExtension(openFileDialog1.FileName) + DateTime.Now.ToString("yyyy-MM-dd_HH_mm_ss") + Path.GetExtension(openFileDialog1.FileName);
+
+            string directory = "Images_db";
+            if (Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+
+                File.Copy(openFileDialog1.FileName, Path.Combine(directory, filename));
+            }
+
+            cmd.Parameters.AddWithValue("@Imagem", filename);
+
+
             string checarCPF = "select count(*) from tb_AC_cliente_02 where cpf = '" + txtCPF.Text.Replace(".", "").Replace("-", "").Trim() + "'";
             SqlCommand TotalCPF = new SqlCommand(checarCPF, conexao);
 
@@ -113,6 +129,8 @@ namespace _12294_12295
                 conexao.Open();
                 int total = Convert.ToInt16(TotalCPF.ExecuteScalar());
                 conexao.Close();
+
+
 
                 if (total == 1)
                 {
@@ -135,14 +153,15 @@ namespace _12294_12295
                         txtUF.Clear();
                         txtLogradouro.Clear();
                         txtComplemento.Clear();
+                        pcbUsuario.Image = null;
                     }
                     cmd.Dispose();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro durante o processo. Tente novamente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 //MessageBox.Show(ex.Message);
+                MessageBox.Show("Ocorreu um erro durante o processo. Tente novamente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
             finally
             {
@@ -245,6 +264,7 @@ namespace _12294_12295
                         txtUF.Clear();
                         txtLogradouro.Clear();
                         txtComplemento.Clear();
+                        pcbUsuario.Image = null;
                         MessageBox.Show("Registro removido com sucesso.");
                     }
 
@@ -264,7 +284,7 @@ namespace _12294_12295
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            string altera = "update tb_AC_cliente_02 set nome= @Nome, email = @Email, telefone = @Telefone, cep = @CEP, logradouro = @Logradouro, complemento = @Complemento, bairro = @Bairro, uf = @UF where cpf= @CPF";
+            string altera = "update tb_AC_cliente_02 set nome= @Nome, email = @Email, telefone = @Telefone, cep = @CEP, logradouro = @Logradouro, complemento = @Complemento, bairro = @Bairro, uf = @UF, foto = @Imagem where cpf= @CPF";
 
             SqlCommand cmd = new SqlCommand(altera, conexao);
             cmd.Parameters.AddWithValue("@CPF", txtCPF.Text.Replace(".", "").Replace("-", "").Trim());
@@ -276,6 +296,18 @@ namespace _12294_12295
             cmd.Parameters.AddWithValue("@Bairro", txtBairro.Text);
             cmd.Parameters.AddWithValue("@Complemento", txtComplemento.Text);
             cmd.Parameters.AddWithValue("@UF", txtUF.Text);
+
+            string filename = Path.GetFileNameWithoutExtension(openFileDialog1.FileName) + DateTime.Now.ToString("yyyy-MM-dd_HH_mm_ss") + Path.GetExtension(openFileDialog1.FileName);
+
+            string directory = "Images_db";
+            if (Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+
+                File.Copy(openFileDialog1.FileName, Path.Combine(directory, filename));
+            }
+            cmd.Parameters.AddWithValue("@Imagem", filename);
+
             try
             {
                 conexao.Open();
@@ -292,13 +324,14 @@ namespace _12294_12295
                     txtUF.Clear();
                     txtLogradouro.Clear();
                     txtComplemento.Clear();
+                    pcbUsuario.Image = null;
+
                     MessageBox.Show("Registro alterado com sucesso");
                 }
                 cmd.Dispose();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //MessageBox.Show(ex.Message);
                 MessageBox.Show("Ocorreu um erro durante o processo. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
             finally
@@ -324,7 +357,7 @@ namespace _12294_12295
                 }
                 else
                 {
-                    txtLogradouro.Text = ds.Tables[0].Rows[0]["tipo_logradouro"].ToString() + rua;
+                    txtLogradouro.Text = ds.Tables[0].Rows[0]["tipo_logradouro"].ToString() + " " + rua;
                     txtBairro.Text = ds.Tables[0].Rows[0]["bairro"].ToString();
                     txtUF.Text = ds.Tables[0].Rows[0]["uf"].ToString();
                     txtComplemento.Focus();
@@ -342,5 +375,17 @@ namespace _12294_12295
 
             sobre.Show();
         }
+
+        private void btnArquivoFoto_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                //var filename = openFileDialog1.FileName;
+                //Bitmap bit = new Bitmap(openFileDialog1.FileName);
+                
+                pcbUsuario.Load(openFileDialog1.FileName);
+            }
+        }
+        
     }
 }

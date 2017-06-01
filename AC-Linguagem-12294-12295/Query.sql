@@ -7,7 +7,8 @@ cep varchar(8) not null,
 logradouro varchar(50) not null,
 complemento int not null,
 bairro varchar(50) not null,
-uf varchar(2) not null
+uf varchar(2) not null,
+foto varchar(max)
 )
 
 drop table tb_AC_cliente_02
