@@ -19,6 +19,9 @@ namespace componentesDiversos
         RadioButton rdbNao;
         Button btnRadioButton;
 
+        // Switch
+        Switch swtTeste;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -54,6 +57,23 @@ namespace componentesDiversos
 
             // Definir o evento ao Click do btnRadioButton
             btnRadioButton.Click += btnRadioButton_Click;
+
+            // Instância da Switch
+            swtTeste = (Switch)FindViewById(Resource.Id.swtTeste);
+
+            swtTeste.CheckedChange += swtTeste_CheckedChange;
+        }
+
+        private void swtTeste_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            if (swtTeste.Checked == true)
+            {
+                Toast.MakeText(this, "Ligado", ToastLength.Short).Show();
+            }
+            else
+            {
+                Toast.MakeText(this, "Desligado", ToastLength.Short).Show();
+            }
         }
 
         private void btnRadioButton_Click(object sender, EventArgs e)
@@ -73,7 +93,7 @@ namespace componentesDiversos
             Spinner spinner = (Spinner)sender;
             // Texto para o Toast
             string toast = string.Format("Estado selecionado: " + spinner.GetItemAtPosition(e.Position));
-            // Toast -> Mensagem que aparecerá na tela como um alert() no js
+            // Toast -> Mensagem que aparecerá na tela como um alert() no JS
             Toast.MakeText(this, toast, ToastLength.Long).Show();
         }
     }
