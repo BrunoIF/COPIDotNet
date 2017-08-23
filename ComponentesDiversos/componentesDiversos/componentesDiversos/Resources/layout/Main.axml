@@ -13,4 +13,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spnExemplo" />
+    <TextView
+        android:text="Radio Button"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rdgGroup">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Sim"
+            android:id="@+id/rdbSim" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Não"
+            android:id="@+id/rdbNao" />
+    </RadioGroup>
+    <Button
+        android:text="Checar RadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnRadioButton" />
 </LinearLayout>

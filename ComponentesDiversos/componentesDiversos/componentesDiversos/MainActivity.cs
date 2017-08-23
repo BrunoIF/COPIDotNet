@@ -9,9 +9,16 @@ namespace componentesDiversos
     [Activity(Label = "componentesDiversos", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
+        // Spinner
         Spinner spinner;
         ArrayAdapter adapter;
         ArrayList estados;
+
+        // Radio
+        RadioButton rdbSim;
+        RadioButton rdbNao;
+        Button btnRadioButton;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -39,12 +46,34 @@ namespace componentesDiversos
 
             // define o evento ItemSelected para exibir o item selecionado
             spinner.ItemSelected += Spinner_ItemSelected;
+
+            // Instância dos RadioButton (Modo Alternativo de instanciar)
+            rdbSim = (RadioButton)FindViewById(Resource.Id.rdbSim);
+            rdbNao = (RadioButton)FindViewById(Resource.Id.rdbNao);
+            btnRadioButton = (Button)FindViewById(Resource.Id.btnRadioButton);
+
+            // Definir o evento ao Click do btnRadioButton
+            btnRadioButton.Click += btnRadioButton_Click;
+        }
+
+        private void btnRadioButton_Click(object sender, EventArgs e)
+        {
+            if (rdbSim.Checked == true)
+            {
+                Toast.MakeText(this, "Clicou no Sim", ToastLength.Short).Show();
+            }
+            else
+            {
+                Toast.MakeText(this, "Clicou no Não", ToastLength.Short).Show();
+            }
         }
 
         private void Spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
+            // Texto para o Toast
             string toast = string.Format("Estado selecionado: " + spinner.GetItemAtPosition(e.Position));
+            // Toast -> Mensagem que aparecerá na tela como um alert() no js
             Toast.MakeText(this, toast, ToastLength.Long).Show();
         }
     }
